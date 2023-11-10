@@ -8,8 +8,8 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
 VERSION = '0.8.0'
-DESCRIPTION = 'TODO'
-LONG_DESCRIPTION = 'TODOTODOTODOTODO'
+DESCRIPTION = 'OeSNN anomaly detector implementation for Python.'
+LONG_DESCRIPTION = 'O'
 
 # Setting up
 setup(
