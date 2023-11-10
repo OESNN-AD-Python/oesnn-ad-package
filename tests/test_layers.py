@@ -5,8 +5,9 @@
 import numpy as np
 from pytest import approx
 
-from layer import InputLayer, OutputLayer
-from neuron import OutputNeuron
+from oesnn_ad.layer import InputLayer, OutputLayer
+from oesnn_ad.neuron import OutputNeuron
+
 
 WINDOW = np.array([0.5, 0.3, 0.4,
                    0.3, 0.6, 0.2,

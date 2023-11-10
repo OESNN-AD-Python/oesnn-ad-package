@@ -5,8 +5,7 @@
 import numpy as np
 from pytest import approx
 
-from neuron import OutputNeuron
-
+from oesnn_ad.neuron import OutputNeuron
 
 def test_update_neuron():
     """
