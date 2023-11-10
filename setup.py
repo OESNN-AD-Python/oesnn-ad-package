@@ -25,7 +25,8 @@ setup(
     keywords=['python', 'data stream', 'spiking neural network', 'SNN', 'anomalies', 'anomaly detection'],
     classifiers=[
         "Development Status :: 4 - Beta",
-        "Intended Audience :: Developers :: Science/Research",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Science/Research",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",
         "Operating System :: MacOS :: MacOS X",
