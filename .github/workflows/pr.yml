@@ -20,7 +20,7 @@ jobs:
         pip install flake8
     
     - name: Test
-      run: cpython -m pytest tests/
+      run: python -m pytest tests/
 
     - name: Linting - code
       run: |
