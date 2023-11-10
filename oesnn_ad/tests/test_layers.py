@@ -14,6 +14,7 @@ WINDOW = np.array([0.5, 0.3, 0.4,
                    0.4, 0.2, 0.4,
                    0.1, 0.5])
 
+
 def test_make_candidate():
     """
         Test asserts if candidate creation working correctly.
@@ -40,6 +41,7 @@ def test_make_candidate():
     assert candidate.max_psp == approx(1.333, abs=1e-3)
     assert candidate.gamma == approx(0.666, abs=1e-3)
 
+
 def test_find_most_similar_without_neurons():
     """
         Test asserts if method return None and np.if when there aren't neurons in output layer.
@@ -52,6 +54,7 @@ def test_find_most_similar_without_neurons():
 
     assert neuron_result is None
     assert np.isinf(distance)
+
 
 def test_find_most_similar_with_neurons():
     """
@@ -78,6 +81,7 @@ def test_find_most_similar_with_neurons():
     assert neuron_result == neuron_out1
     assert distance == approx(0.0173, abs=1e-4)
 
+
 def test_reset_psp():
     """
         Test assert if zeroing PSP working correctly.
@@ -99,6 +103,7 @@ def test_reset_psp():
     for neuron in output_layer:
         assert neuron.psp == 0.0
 
+
 def test_add_new_neuron():
     """
         Test assert if method add new neuron correctly.
@@ -119,6 +124,7 @@ def test_add_new_neuron():
     assert len(output_layer) == 2
     assert output_layer[1] == neuron_out2
 
+
 def test_replace_oldest():
     """
         Test assert if method replace oldest neuron correctly.
@@ -126,11 +132,11 @@ def test_replace_oldest():
     output_layer = OutputLayer(10)
 
     neuron_out1 = OutputNeuron(np.array([]), 0.0, 0.0, 0.0,
-                                PSP=0.0, max_PSP=0.0, addition_time=1.0)
+                               PSP=0.0, max_PSP=0.0, addition_time=1.0)
     neuron_out2 = OutputNeuron(np.array([]), 0.0, 0.0, 0.0,
-                                PSP=0.0, max_PSP=0.0, addition_time=2.0)
+                               PSP=0.0, max_PSP=0.0, addition_time=2.0)
     neuron_out3 = OutputNeuron(np.array([]), 0.0, 0.0, 0.0,
-                                PSP=0.0, max_PSP=0.0, addition_time=3.0)
+                               PSP=0.0, max_PSP=0.0, addition_time=3.0)
     candidate = output_layer.make_candidate(
         WINDOW, np.array([1, 2, 3]), 0.0, 0.0, 10)
 
@@ -142,6 +148,7 @@ def test_replace_oldest():
 
     assert neuron_out1 not in output_layer
     assert candidate in output_layer
+
 
 def test_len_magic_method():
     """

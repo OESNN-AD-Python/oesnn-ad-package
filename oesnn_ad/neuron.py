@@ -13,6 +13,7 @@ class Neuron:
     def __init__(self) -> None:
         pass
 
+
 class InputNeuron(Neuron):
     """
         Input neuron class inheriting after neuron's base class.
@@ -33,11 +34,11 @@ class InputNeuron(Neuron):
     def set_order(self, new_order: int):
         """
             Setter for order attribute.
-            
             Args:
                 new_order (int): New neuron order
         """
         self.order = new_order
+
 
 class OutputNeuron(Neuron):
     """
@@ -82,9 +83,8 @@ class OutputNeuron(Neuron):
         """
             Method to update properties of neuron based on other neuron which is argument
             of method.
-            
             Args:
-                candidate_neuron (OutputNeuron): Candidate neuron which properties will be 
+                candidate_neuron (OutputNeuron): Candidate neuron which properties will be
                 base of neuron modification
         """
         self.weights = (candidate_neuron.weights +
@@ -120,10 +120,9 @@ class OutputNeuron(Neuron):
         """
         return np.abs(window_head - self.output_value)
 
-    def update_psp(self, psp_update : float):
+    def update_psp(self, psp_update: float):
         """
             Method to update postsynaptic potential.
-
             Args:
                 psp_update (float): quantity of post synaptic potential to update
         """

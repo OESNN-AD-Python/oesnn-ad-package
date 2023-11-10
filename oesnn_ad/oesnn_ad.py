@@ -64,11 +64,9 @@ class OeSNNAD:
                                 end_idx: int) -> npt.NDArray[np.float64]:
         """
             Method returning window with data.
-
             Args:
                 begin_idx (int): begin index of data window
                 end_idx (int): end index of data window
-                
             Returns:
                 npt.NDArray[np.float64]: data window
         """
@@ -77,10 +75,8 @@ class OeSNNAD:
     def _init_values_rand(self, window: npt.NDArray[np.float64]) -> List[float]:
         """
             Method which init values in attribute on begining.
-
             Args:
                 window (npt.NDArray): _description_
-                
             Returns:
                 List[float]: _description_
         """
@@ -90,7 +86,6 @@ class OeSNNAD:
     def _init_new_arrays_for_predict(self, window: npt.NDArray[np.float64]) -> None:
         """
             Method initilize attributes like values, errors and anomaliesl
-            
             Args:
                 window (npt.NDArray[np.float64]): window from datastream
         """
@@ -102,7 +97,6 @@ class OeSNNAD:
         """
             Method is main interface of model. There is main flow of model, with returning
             vector of predictions.
-            
             Returns:
                 npt.NDArray[np.bool_]: predictions vector
         """
@@ -124,7 +118,6 @@ class OeSNNAD:
     def _anomaly_detection(self, window: npt.NDArray[np.float64]) -> None:
         """
             Method check if anomaly is detected.
-            
             Args:
                 window (npt.NDArray[np.float64]): window from datastream
         """
@@ -142,7 +135,6 @@ class OeSNNAD:
     def _anomaly_classification(self) -> bool:
         """
             Method check if current head of window is anomaly.
-            
             Returns:
                 bool: _description_
         """
@@ -151,15 +143,12 @@ class OeSNNAD:
         anomalies_window = np.array(self.anomalies[-(self.window_size - 1):])
 
         errors_for_non_anomalies = errors_window[np.where(~anomalies_window)]
-        return not (
-            (not np.any(errors_for_non_anomalies)) or (error_t - np.mean(errors_for_non_anomalies)
-                                                < np.std(errors_for_non_anomalies) * self.epsilon)
-        )
+        return not ((not np.any(errors_for_non_anomalies)) or (error_t - np.mean(errors_for_non_anomalies)
+                    < np.std(errors_for_non_anomalies) * self.epsilon))
 
     def _learning(self, window: npt.NDArray[np.float64], neuron_age: int) -> None:
         """
             Method learn model by tune up parameters of output neurons.
-
             Args:
                 window (npt.NDArray[np.float64]): window from data stream
                 neuron_age (int): number of current iteration
@@ -185,9 +174,8 @@ class OeSNNAD:
         """
             Method control PSP in model, and returning first firing output neuron (if fired
             more than one output neuron, there is chosen with greatest PSP)
-            
             Returns:
-                OutputNeuron | bool: firing neuron with greatest PSP 
+                OutputNeuron | bool: firing neuron with greatest PSP
         """
         self.output_layer.reset_psp()
 
@@ -201,5 +189,5 @@ class OeSNNAD:
 
             if fired_neuron is not None:
                 return fired_neuron
-            
+
         return None
