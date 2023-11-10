@@ -6,8 +6,9 @@
 import numpy as np
 from pytest import approx
 
-from neuron import InputNeuron, OutputNeuron
-from oesnn_ad import OeSNNAD
+from oesnn_ad.oesnn_ad import OeSNNAD
+from oesnn_ad.neuron import InputNeuron, OutputNeuron
+
 
 WINDOW = np.array([0.5, 0.3, 0.4,
                    0.3, 0.6, 0.2,

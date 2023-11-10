@@ -20,10 +20,16 @@ jobs:
         pip install flake8
     
     - name: Test
-      run: cd oesnn_ad && python -m pytest tests/
+      run: cpython -m pytest tests/
 
-    - name: Linting
+    - name: Linting - code
       run: |
         cd oesnn_ad
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Linting - tests
+      run: |
+        cd tests
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics

@@ -5,7 +5,7 @@
 
 import numpy as np
 
-from grf_init import GRFInit
+from oesnn_ad.grf_init import GRFInit
 
 WINDOW = np.array([0.5, 0.3, 0.4,
                    0.3, 0.6, 0.2,
