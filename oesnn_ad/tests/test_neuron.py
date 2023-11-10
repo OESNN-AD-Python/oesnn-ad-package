@@ -25,6 +25,7 @@ def test_update_neuron():
     np.testing.assert_array_almost_equal(
         updated_neuron.weights, np.array([0.5]*3), decimal=3)
 
+
 def test__get_item__():
     """
         Test assert if neuron indexing is correctly returning values from weights
@@ -36,6 +37,7 @@ def test__get_item__():
     assert neuron[0] == 0.25
     assert neuron[1] == 0.5
     assert neuron[2] == 0.75
+
 
 def test_error_correction():
     """
@@ -51,6 +53,7 @@ def test_error_correction():
     neuron.error_correction(window_head, ksi)
     assert neuron.output_value == 0.55
 
+
 def test_error_calc():
     """
         Test assert if error calculation working correctly.
@@ -62,6 +65,7 @@ def test_error_calc():
         np.array([0.25, 0.5, 0.75]), 0.25, output_value, 1, 0.25, 0.75, 2)
 
     assert neuron.error_calc(window_head) == 0.9
+
 
 def test_update_psp():
     """

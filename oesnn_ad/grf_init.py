@@ -10,7 +10,6 @@ class GRFInit:
     """
         Class contains functions which target is initialization of firing neurons order
         in output layer.
-        
         Class's object is redefined in every iteration of OeSNN-AD.
     """
 
@@ -48,9 +47,8 @@ class GRFInit:
 
     def _get_center_vec(self) -> npt.NDArray[np.float64]:
         """
-            Method to calculate Gaussian Receptor Field center vector for all neurons 
+            Method to calculate Gaussian Receptor Field center vector for all neurons
             in input layer.
-
             Returns:
                 npt.NDArray[np.float64]: GRF's center vector
         """
@@ -61,13 +59,11 @@ class GRFInit:
                         width_v: npt.NDArray[np.float64],
                         center_v: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
         """
-            Method to calculate Gaussian Receptor Field excitation vector for all neurons 
+            Method to calculate Gaussian Receptor Field excitation vector for all neurons
             in input layer.
-            
             Args:
                 width_v (npt.NDArray[np.float64]): GRF's width vector
                 center_v (npt.NDArray[np.float64]): GRF's center vector
-
             Returns:
                 npt.NDArray[np.float64]: GRF's excitation vector
         """
@@ -76,12 +72,10 @@ class GRFInit:
 
     def _get_firing_time(self, excitation: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
         """
-            Method to calculate Gaussian Receptor Field firing times vector for all neurons 
+            Method to calculate Gaussian Receptor Field firing times vector for all neurons
             in input layer.
-
             Args:
                 excitation (npt.NDArray[np.float64]): GRF's excitation vector
-
             Returns:
                 npt.NDArray[np.float64]: firing times vector
         """
@@ -89,12 +83,10 @@ class GRFInit:
 
     def _get_order(self, firings_times: npt.NDArray[np.float64]) -> npt.NDArray[np.intp]:
         """
-            Method to calculate Gaussian Receptor Field firing order vector for all neurons 
+            Method to calculate Gaussian Receptor Field firing order vector for all neurons
             in input layer.
-            
             Args:
                 firings_times (npt.NDArray[np.float64]): firing times vector
-
             Returns:
                 npt.NDArray[np.intp]: orders vector
         """
@@ -104,10 +96,9 @@ class GRFInit:
         return orders
 
     def get_order(self) -> npt.NDArray[np.intp]:
-        """            
+        """
             Method is public interface to calculate vector of firing's orders for all neurons
             in input layer.
-            
             Returns:
                 npt.NDArray[np.intp]: orders vector
         """

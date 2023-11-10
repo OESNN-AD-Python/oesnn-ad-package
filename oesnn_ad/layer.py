@@ -14,10 +14,8 @@ from neuron import InputNeuron, Neuron, OutputNeuron
 class Layer:
     """
         Base class creates interface for inheritance classes.
-        
         Beside of common attributes for all layers, class is making magic methods allowing
         indexation, counting numer of neurons in layer thank to 'len' function.
-        
         Class musn't be created as object.
     """
 
@@ -33,9 +31,8 @@ class Layer:
     def __iter__(self) -> Generator[Neuron, None, None]:
         """
             Magic method for iteration over list of neurons in layer.
-
             Yields:
-                Generator[Neuron, None, None]: generator which allow to iterate 
+                Generator[Neuron, None, None]: generator which allow to iterate
                 over object's neurons
         """
         return (neuron for neuron in self.neurons)
@@ -61,10 +58,10 @@ class Layer:
         """
         return self.neurons[index]
 
+
 class InputLayer(Layer):
     """
         Class implementing input layer, inheriting after base class Layer.
-        
         Class stores and handling list of input neurons.
     """
 
@@ -81,9 +78,8 @@ class InputLayer(Layer):
     def __iter__(self) -> Generator[InputNeuron, None, None]:
         """
             Magic method for iteration over list of input neurons in layer.
-
             Yields:
-                Generator[InputNeuron, None, None]: generator which allow to iterate 
+                Generator[InputNeuron, None, None]: generator which allow to iterate
                 over input neurons
         """
         neurons = sorted(self.neurons, key=lambda neuron: neuron.order)
@@ -103,9 +99,8 @@ class InputLayer(Layer):
 
     @property
     def orders(self) -> np.vectorize:
-        """ 
+        """
             Property, which lookup firing order of neurons in one list
-            
             Returns:
                 np.vectorize: vectorized list of firing order of neurons
         """
@@ -117,9 +112,8 @@ class InputLayer(Layer):
                    ts_coef: float,
                    mod: float,
                    beta: float) -> None:
-        """  
+        """
             Method set for all input neurons new firing order in layer.
-
             Args:
                 window (npt.NDArray[np.float64]): list of input values from stream
                 ts_coef (float): factor from OeSNN-AD
@@ -131,10 +125,10 @@ class InputLayer(Layer):
         for neuron, new_order in zip(self.neurons, grf.get_order()):
             neuron.set_order(new_order)
 
+
 class OutputLayer(Layer):
     """
         Class implementing output layer, inheriting after base class Layer.
-        
         Class stores and handling list of output neurons.
     """
 
@@ -150,9 +144,8 @@ class OutputLayer(Layer):
     def __iter__(self) -> Generator[OutputNeuron, None, None]:
         """
             Magic method for iteration over list of output neurons in layer.
-
             Yields:
-                Generator[InputNeuron, None, None]: generator which allow to iterate 
+                Generator[InputNeuron, None, None]: generator which allow to iterate
                 over output neurons
         """
         return super().__iter__()
@@ -181,14 +174,12 @@ class OutputLayer(Layer):
                        neuron_age: int) -> OutputNeuron:
         """
             Method is making new output neuron and setting his properties
-            
             Args:
                 window (npt.NDArray[np.float64]): list of values from stream
                 order (npt.NDArray[np.intp]): firing order of neuron
                 mod (float): factor from OeSNN-AD
                 c_coef (float): factor from OeSNN-AD
                 neuron_age (int): neuron's age
-
             Returns:
                 OutputNeuron: Candidate neuron
         """
@@ -203,13 +194,11 @@ class OutputLayer(Layer):
 
     def find_most_similar(self,
                           candidate_neuron: OutputNeuron) -> Tuple[OutputNeuron | None, float]:
-        """ 
+        """
             Method return neuron which have lowest euclidean distance to candidate neuron and that
             distance. If layer doesn't have neurons, method return Tuple[false, np.inf]
-            
             Args:
                 candidate_neuron (OutputNeuron): Neuron for which we need to find most similar
-
             Returns:
                 Tuple[OutputNeuron | bool, float]: Two elements tuple, in which first position is
                 for neuron or boolean false if layer is empty and second position is for
@@ -218,17 +207,17 @@ class OutputLayer(Layer):
         if not self.neurons:
             return None, np.Inf
 
-        dist_f = lambda neuron: np.linalg.norm(neuron.weights - candidate_neuron.weights)
+        def dist_f(neuron: OutputNeuron):
+            return np.linalg.norm(neuron.weights - candidate_neuron.weights)
+
         most_similar_neuron = min(self.neurons, key=dist_f)
         min_distance = dist_f(most_similar_neuron)
         return most_similar_neuron, min_distance
 
     def add_new_neuron(self, neuron: OutputNeuron) -> None:
-        """ 
+        """
             Method add new neuron when number of neurons is lower than max size of layer.
-            
             Additionaly method after pushinh new neuron, update value of attribute num_neurons.
-
             Args:
                 neuron (OutputNeuron): New neuron in layer
         """
@@ -238,7 +227,6 @@ class OutputLayer(Layer):
         """
             Method replace oldest neuron in layer by new created candidate, when number
             of neurons in layer is max.
-            
             Args:
                 candidate (OutputNeuron): new neuron which replace oldest neuron in layer
         """
@@ -247,7 +235,7 @@ class OutputLayer(Layer):
         self.neurons.append(candidate)
 
     def reset_psp(self) -> None:
-        """ 
+        """
             Method zeroing postsynaptic potential all neurons in layer
         """
         for neuron in self.neurons:
