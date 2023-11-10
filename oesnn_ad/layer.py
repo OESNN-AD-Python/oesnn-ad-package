@@ -7,8 +7,8 @@ from typing import Generator, List, Tuple
 import numpy as np
 import numpy.typing as npt
 
-from grf_init import GRFInit
-from neuron import InputNeuron, Neuron, OutputNeuron
+from oesnn_ad.grf_init import GRFInit
+from oesnn_ad.neuron import InputNeuron, Neuron, OutputNeuron
 
 
 class Layer:

@@ -7,8 +7,8 @@ from typing import List
 import numpy as np
 import numpy.typing as npt
 
-from layer import InputLayer, OutputLayer
-from neuron import OutputNeuron
+from oesnn_ad.layer import InputLayer, OutputLayer
+from oesnn_ad.neuron import OutputNeuron
 
 
 class OeSNNAD:
