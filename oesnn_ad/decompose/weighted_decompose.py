@@ -1,6 +1,6 @@
 import numpy as np
 import numpy.typing as npt
-from oesnn_ad.ceemdan.decompose import Decompose
+from oesnn_ad.decompose.decompose import Decompose
 
 
 class WeightedCeemdan(Decompose):
