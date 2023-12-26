@@ -11,7 +11,7 @@ STREAM = np.array([0.5, 0.3, 0.4,
 
 def test__merge():
     """
-
+        Assert if weighted merge working properly.
     """
     ceemdan = WeightedCeemdan(STREAM, common_ratio=0.9)
 

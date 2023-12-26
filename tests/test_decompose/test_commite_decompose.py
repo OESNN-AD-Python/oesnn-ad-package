@@ -10,6 +10,9 @@ STREAM = np.array([0.5, 0.3, 0.4,
 
 
 def test__merge():
+    """
+        Assert if commitee merge working properly.
+    """
     ceemdan = CommiteeDecompose(STREAM)
 
     result = ceemdan._merge(np.array([
