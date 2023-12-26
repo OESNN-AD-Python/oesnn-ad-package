@@ -55,11 +55,37 @@ class OeSNNAD:
         self.ksi = ksi
         self.sim = sim
         self.beta = beta
+        
+        self.__validate_init()
 
         self.values: List[float] = []
         self.anomalies: List[bool] = []
         self.errors: List[float] = []
 
+    def __validate_init(self):
+        if self.stream.shape[0] < self.window_size:
+            raise ValueError("Stream length should be greater than window size.")
+        if self.window_size < 1:
+            raise ValueError("Window size should be greater than one.")
+        if self.input_layer.num_neurons < 1:
+            raise ValueError("Number of input neurons should be greater than one.")
+        if self.output_layer.max_outpt_size < 1:
+            raise ValueError("Max number of output neurons should be greater than one.")
+        if self.ts_factor < 0:
+            raise ValueError("TS factor should be greater than 0.")
+        if self.mod < 0 or self.mod > 1:
+            raise ValueError("Mod should be in range [0, 1]")
+        if self.c_factor < 0 or self.c_factor > 1:
+            raise ValueError("C factor should be in range [0, 1]")
+        if self.epsilon < 2:
+            raise ValueError("Epsilon should be greater than 2")
+        if self.ksi < 0 or self.ksi > 1:
+            raise ValueError("Ksi should be in range [0,1]")
+        if self.sim < 0:
+            raise ValueError("Sim should be greater than 2")
+        if self.beta < 0:
+            raise ValueError("Beta should be greater than 2")
+    
     def _get_window_from_stream(self, begin_idx: int,
                                 end_idx: int) -> npt.NDArray[np.float64]:
         """
