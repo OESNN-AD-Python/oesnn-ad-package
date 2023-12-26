@@ -15,7 +15,7 @@ class Decompose:
         self.ceemdan = CEEMDAN(trials=trials, range_threshold=range_threshold,
                                total_power_threshold=total_power_threshold)
 
-    def _decompose(self, channels: int):
+    def _decompose(self, channels: int) -> npt.NDArray:
         return self.ceemdan.ceemdan(self.stream, max_imf=channels)
 
     def _merge(self, detections: npt.NDArray) -> npt.NDArray:
