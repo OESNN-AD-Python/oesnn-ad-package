@@ -1,8 +1,8 @@
-# Online evolutionary Spiking Neural Network anomaly detector
+# Online evolutionary Spiking Neural Network unsupervised anomaly detector
 
 ## Description
 
- Python implementation of OeSNN anomaly detector model. Model finds anomalies in one dimensional data streams. Theoretical basics about this model could be find here: https://arxiv.org/pdf/1912.08785.pdf.
+ Python implementation of OeSNN-UAD model. Model finds anomalies in one dimensional data streams. Theoretical basics about this model could be find here: https://arxiv.org/pdf/1912.08785.pdf.
 
 ## Dependencies
 
