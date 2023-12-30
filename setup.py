@@ -7,9 +7,9 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '1.0.0'
-DESCRIPTION = 'OeSNN anomaly detector implementation for Python.'
-LONG_DESCRIPTION = 'Online evolutionary Spiking Neural Network anomaly detector implementation for Python.'
+VERSION = '1.0.1'
+DESCRIPTION = 'OeSNN-UAD anomaly detector implementation for Python.'
+LONG_DESCRIPTION = 'Online evolutionary Spiking Neural Network unsupervised anomaly detector implementation for Python.'
 
 # Setting up
 setup(
@@ -21,8 +21,9 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
-    install_requires=['numpy'],
-    keywords=['python', 'data stream', 'spiking neural network', 'SNN', 'anomalies', 'anomaly detection'],
+    install_requires=['numpy', 'EMD-signal'],
+    keywords=['python', 'data stream', 'spiking neural network',
+              'SNN', 'anomalies', 'anomaly detection', 'CEEMDAN'],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
